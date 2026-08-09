@@ -71,3 +71,19 @@
 /* Rich content embeds */
 .rich-copy iframe,.article-content iframe{display:block;max-width:100%;border:0;margin:1.5rem 0;background:#000}
 @media(max-width:620px){.rich-copy iframe,.article-content iframe{width:100%!important;min-height:167px}}
+
+/* Per-game identity: values are set by the local editor and remain fully static on GitHub Pages. */
+body[data-game-theme="corporate-horror"]{--line:#394028;background-image:linear-gradient(120deg,rgba(217,255,69,.035),transparent 34%)}
+body[data-game-theme="vhs"]{--line:#523650;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.018) 0 1px,transparent 1px 4px)}
+body[data-game-theme="terminal"]{--line:#1e5a54;background-image:linear-gradient(rgba(0,255,190,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,190,.025) 1px,transparent 1px);background-size:28px 28px}
+body[data-game-theme="terminal"] .game-hero:after{content:"// SIGNAL LOCKED · BUILD IN PROGRESS · DO NOT ARCHIVE";position:absolute;left:max(24px,calc((100vw - var(--max))/2));bottom:25px;z-index:3;color:var(--accent);font:700 .62rem/1 var(--font-display);letter-spacing:.14em;opacity:.8}body[data-game-theme="terminal"] .feature:before{content:">_ ";color:var(--accent);font-family:var(--font-display)}
+body[data-game-theme="surreal"]{--line:#4b385a;background-image:radial-gradient(circle at 80% 15%,rgba(167,89,255,.11),transparent 30%)}
+body[data-game-theme="brutalist"]{--line:#5d5d5d;background-image:linear-gradient(135deg,rgba(255,255,255,.025) 25%,transparent 25%);background-size:12px 12px}
+body[data-game-theme="minimal"]{--line:#303030;background-image:none}
+body[data-game-theme] .game-hero-overlay{background:linear-gradient(90deg,color-mix(in srgb,var(--bg) 94%,transparent),color-mix(in srgb,var(--bg) 45%,transparent)),linear-gradient(0deg,var(--bg),transparent 42%)}
+body[data-game-theme] .game-facts,body[data-game-theme] .feature,body[data-game-theme] .update-card{border-color:color-mix(in srgb,var(--accent) 28%,var(--line))}
+body[data-game-theme] .game-hero{border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,var(--line))}
+body[data-game-theme] .game-hero:before{content:attr(data-archive-label);position:absolute;z-index:3;top:24px;right:max(24px,calc((100vw - var(--max))/2));color:var(--accent);font:700 .66rem/1 var(--font-display);letter-spacing:.16em;text-transform:uppercase;border:1px solid color-mix(in srgb,var(--accent) 45%,transparent);padding:8px 10px;background:color-mix(in srgb,var(--bg) 82%,transparent)}
+@media(max-width:640px){body[data-game-theme] .game-hero:before{top:16px;right:14px}}
+.game-custom-section{border-top:1px solid color-mix(in srgb,var(--accent) 24%,var(--line));background:color-mix(in srgb,var(--panel) 58%,var(--bg))}.game-custom-content{max-width:900px;padding:20px 0 0}
+.news-filter{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 28px}.news-filter button{padding:9px 12px;background:#0c0c0c;color:#aaa;border:1px solid var(--line);font:700 .7rem/1 var(--font-display);letter-spacing:.08em;text-transform:uppercase}.news-filter button:hover,.news-filter button.active{border-color:var(--accent);color:#fff}.news-filter button span{color:var(--accent);margin-left:6px}

@@ -1,5 +1,4 @@
-/* Copyright © 2026 Tamas "FATHER" Alex. All rights reserved. */
-window.INSIDERS_DATA = {
+{
   "studio": {
     "name": "Insiders Corporation",
     "eyebrow": "Independent game studio",
@@ -475,4 +474,4 @@ window.INSIDERS_DATA = {
     "news": [],
     "pages": []
   }
-};
+}

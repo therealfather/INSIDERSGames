@@ -13,11 +13,14 @@
   const depth=document.body.dataset.depth==='1';
   const path=p=>!p?'':(/^https?:\/\//i.test(p)?p:(depth?'../':'')+p);
   const set=(sel,val)=>{const e=$(sel);if(e)e.textContent=val||''};
+  const setMeta=(name,content,property=false)=>{if(!content)return;const selector=property?`meta[property="${name}"]`:`meta[name="${name}"]`;let meta=$(selector);if(!meta){meta=document.createElement('meta');meta.setAttribute(property?'property':'name',name);document.head.append(meta)}meta.content=plain(content)};
+  const setSocialMeta=(title,description,image='')=>{setMeta('description',description);setMeta('og:title',title,true);setMeta('og:description',description,true);setMeta('twitter:card','summary_large_image');if(image){setMeta('og:image',image,true);setMeta('twitter:image',image)}};
   const visibleGames=()=>(D.games||[]).filter(g=>g.visible!==false);
 
   $$('[data-year]').forEach(x=>x.textContent=new Date().getFullYear());
   $$('[data-discord]').forEach(x=>x.href=S.discord||'#');
   $$('[data-studio-logo]').forEach(x=>{if(S.logo)x.src=path(S.logo)});
+  $$('.nav,.mobile-menu').forEach(nav=>{if(nav.querySelector('[data-press-link]'))return;const link=document.createElement('a');link.href=depth?'../press.html':'press.html';link.textContent='Press Kit';link.dataset.pressLink='';if(document.body.dataset.page==='press')link.className='active';const contact=[...nav.querySelectorAll('a')].find(item=>/contact\.html$/.test(item.getAttribute('href')||''));if(contact)nav.insertBefore(link,contact);else nav.append(link)});
 
   const menu=$('.menu-toggle'),mobile=$('.mobile-menu');
   if(menu&&mobile)menu.onclick=()=>{const open=mobile.classList.toggle('open');menu.setAttribute('aria-expanded',open)};
@@ -81,7 +84,22 @@
 
   const id=document.body.dataset.game;
   const g=(D.games||[]).find(x=>x.id===id);
+  function applyGameIdentity(game){
+    if(!game)return;
+    const root=document.documentElement;
+    const vars={'--accent':game.accentColor,'--bg':game.backgroundColor,'--panel':game.panelColor,'--font-display':game.gameFontDisplay?`"${game.gameFontDisplay}",sans-serif`:null,'--font-body':game.gameFontBody?`"${game.gameFontBody}",sans-serif`:null};
+    Object.entries(vars).forEach(([key,value])=>{if(value)root.style.setProperty(key,value)});
+    if(game.gameFontDisplay)installFont(game.gameFontDisplay,'insiders-game-display-font');
+    if(game.gameFontBody)installFont(game.gameFontBody,'insiders-game-body-font');
+    document.body.dataset.gameTheme=game.theme||'custom';
+    const hero=$('[data-game-hero]');if(hero){hero.style.backgroundPosition=game.heroPosition||'center';hero.closest('.game-hero')?.setAttribute('data-archive-label',game.archiveLabel||'Project file')}
+    const facts=$('.game-facts');if(facts)facts.hidden=game.showFacts===false;
+    const sectionFor=selector=>$(selector)?.closest('section');
+    [['[data-trailer]',game.showTrailer],['[data-roadmap-section]',game.showRoadmap],['[data-updates-section]',game.showUpdates],['[data-gallery]',game.showGallery]].forEach(([selector,visible])=>{const section=sectionFor(selector);if(section&&visible===false)section.hidden=true});
+  }
   if(g){
+    applyGameIdentity(g);
+    setSocialMeta(`${g.title} — Insiders Corporation`,plain(g.short||g.description?.[0]||''),g.cover?new URL(path(g.cover),location.href).href:'');
     document.title=`${g.title} — Insiders Corporation`;
     const hero=$('[data-game-hero]');
     if(hero&&g.cover)hero.style.backgroundImage=`url('${path(g.cover)}')`;
@@ -99,10 +117,20 @@
     const desc=$('[data-game-description]');if(desc)desc.innerHTML=(g.description||[]).map(p=>`<p>${esc(p)}</p>`).join('');
     const features=$('[data-game-features]');if(features)features.innerHTML=(g.features||[]).map(f=>`<div class="feature">${esc(f)}</div>`).join('');
     const facts=$('[data-game-facts]');if(facts)facts.innerHTML=`<dt>Status</dt><dd>${esc(g.status)}</dd><dt>Genre</dt><dd>${esc(g.genre)}</dd><dt>Engine</dt><dd>${esc(g.engine)}</dd><dt>Platforms</dt><dd>${esc(g.platforms)}</dd>`;
-    renderTrailer(g);renderRoadmap(g);renderUpdates(g);renderGallery(g);
+    renderTrailer(g);renderRoadmap(g);renderUpdates(g);renderGallery(g);renderGameBlocks(g);applyGameIdentity(g);
   }
 
   function youtubeId(url=''){const m=url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{6,})/i);return m&&m[1]}
+  function renderGameBlocks(game){
+    const blocks=(game.blocks||[]).filter(block=>block&&block.type);
+    if(!blocks.length)return;
+    const section=document.createElement('section');
+    section.className='section game-custom-section';
+    section.innerHTML='<div class="wrap"><div class="media-title"><div><div class="eyebrow">Additional file</div><h2>Further material</h2></div></div><article class="article-content game-custom-content" data-game-blocks></article></div>';
+    const gallerySection=$('[data-gallery]')?.closest('section');
+    if(gallerySection)gallerySection.before(section);else $('#content')?.append(section);
+    renderBlocks(blocks,$('[data-game-blocks]',section));
+  }
   function renderTrailer(g){
     const shell=$('[data-trailer]'),empty=$('[data-trailer-empty]');if(!shell)return;
     let html='';
@@ -179,10 +207,16 @@
     })};walk(t.content);return t.innerHTML
   }
   function publishedArticles(){return (D.articles||[]).filter(a=>a.status==='published').sort((a,b)=>String(b.date).localeCompare(String(a.date)))}
-  if(page==='news'){const grid=$('[data-news-grid]');if(grid){grid.innerHTML=publishedArticles().map(articleCard).join('')||'<div class="media-empty">No published articles yet.</div>';reveal(grid)}}
+  if(page==='news'){const grid=$('[data-news-grid]');if(grid){const articles=publishedArticles(),categories=[...new Set(articles.map(article=>article.category||'News'))];const filter=document.createElement('div');filter.className='news-filter';filter.innerHTML=`<button class="active" data-news-filter="all">All transmissions <span>${articles.length}</span></button>`+categories.map(category=>`<button data-news-filter="${esc(category)}">${esc(category)} <span>${articles.filter(article=>(article.category||'News')===category).length}</span></button>`).join('');grid.before(filter);const draw=category=>{const selected=category==='all'?articles:articles.filter(article=>(article.category||'News')===category);grid.innerHTML=selected.map(articleCard).join('')||'<div class="media-empty">No published articles in this category.</div>';reveal(grid)};filter.querySelectorAll('[data-news-filter]').forEach(button=>button.onclick=()=>{filter.querySelectorAll('button').forEach(item=>item.classList.toggle('active',item===button));draw(button.dataset.newsFilter)});draw('all')}}
   if(page==='home'){const articles=publishedArticles().slice(0,3),section=$('[data-latest-news-section]'),mount=$('[data-latest-news]');if(section&&mount&&articles.length){section.hidden=false;mount.innerHTML=articles.map(articleCard).join('');reveal(mount)}}
   function renderBlocks(blocks,mount){if(!mount)return;mount.innerHTML=(blocks||[]).map(b=>{if(b.type==='heading')return `<h2>${rich(b.text||'')}</h2>`;if(b.type==='image')return b.src?`<figure><img src="${path(b.src)}" alt="" loading="lazy"></figure>`:'';if(b.type==='youtube'){const y=youtubeId(b.url||'');return y?`<a class="video-facade" href="${esc(b.url)}" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/${y}/maxresdefault.jpg"><span class="video-play">▶</span></a>`:''}if(b.type==='quote')return `<blockquote>${rich(b.text||'')}</blockquote>`;if(b.type==='button')return `<p><a class="btn primary" href="${esc(b.url||'#')}" target="_blank" rel="noopener">${esc(b.label||'Open')}</a></p>`;if(b.type==='divider')return '<hr>';return `<div class="rich-copy">${rich(b.text||'')}</div>`}).join('')}
   if(page==='article'){const a=(D.articles||[]).find(x=>x.id===document.body.dataset.article);if(a){document.title=`${a.title} — Insiders Corporation`;set('[data-article-category]',a.category);set('[data-article-title]',a.title);const ae=$('[data-article-excerpt]');if(ae)ae.innerHTML=rich(a.excerpt||'');set('[data-article-meta]',`${a.date||''}${a.gameId?' · '+((D.games||[]).find(g=>g.id===a.gameId)?.title||''):''}`);const h=$('[data-article-hero]');if(h&&a.cover)h.style.backgroundImage=`linear-gradient(180deg,rgba(0,0,0,.35),#000),url('${path(a.cover)}')`;renderBlocks(a.blocks,$('[data-article-content]'))}}
   if(page==='custom'){const p=(D.pages||[]).find(x=>x.id===document.body.dataset.customPage);if(p){document.title=`${p.title} — Insiders Corporation`;set('[data-custom-title]',p.title);const ci=$('[data-custom-intro]');if(ci)ci.innerHTML=rich(p.intro||'');renderBlocks(p.blocks,$('[data-custom-content]'))}}
 
+  if(/\/press\.html$/i.test(location.pathname)){
+    const title=S.pressTitle||'Press Kit',intro=S.pressIntro||'Official studio information, game descriptions, screenshots and contact links.';
+    document.title=`${title} — ${S.name||'Insiders Corporation'}`;
+    const h1=$('.page-hero h1'),lead=$('.page-hero p');if(h1)h1.textContent=title;if(lead)lead.textContent=intro;
+    const contact=$('.game-facts');if(contact&&S.pressEmail)contact.insertAdjacentHTML('afterbegin',`<dt>Press email</dt><dd><a href="mailto:${esc(S.pressEmail)}">${esc(S.pressEmail)}</a></dd>`);
+  }
 })();
