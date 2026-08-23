@@ -3,7 +3,7 @@
   const D=window.INSIDERS_DATA||{studio:{},games:[]};
   const S=D.studio||{};
   const fontUrl=name=>'https://fonts.googleapis.com/css2?family='+encodeURIComponent(name).replace(/%20/g,'+')+':wght@400;500;600;700;800&display=swap';
-  const installFont=(name,id)=>{if(!name)return;const l=document.createElement('link');l.rel='stylesheet';l.href=fontUrl(name);l.id=id;document.head.append(l)};
+  const installFont=(name,id)=>{if(!name||S.loadExternalFonts===false)return;const l=document.createElement('link');l.rel='stylesheet';l.href=fontUrl(name);l.id=id;document.head.append(l)};
   installFont(S.fontDisplay||'Oxanium','insiders-display-font');installFont(S.fontBody||'Space Grotesk','insiders-body-font');
   document.documentElement.style.setProperty('--font-display',`"${S.fontDisplay||'Oxanium'}",sans-serif`);
   document.documentElement.style.setProperty('--font-body',`"${S.fontBody||'Space Grotesk'}",sans-serif`);
@@ -15,6 +15,7 @@
   const set=(sel,val)=>{const e=$(sel);if(e)e.textContent=val||''};
   const setMeta=(name,content,property=false)=>{if(!content)return;const selector=property?`meta[property="${name}"]`:`meta[name="${name}"]`;let meta=$(selector);if(!meta){meta=document.createElement('meta');meta.setAttribute(property?'property':'name',name);document.head.append(meta)}meta.content=plain(content)};
   const setSocialMeta=(title,description,image='')=>{setMeta('description',description);setMeta('og:title',title,true);setMeta('og:description',description,true);setMeta('twitter:card','summary_large_image');if(image){setMeta('og:image',image,true);setMeta('twitter:image',image)}};
+  const absolute=p=>{try{return new URL(path(p),location.href).href}catch{return path(p)}};
   const visibleGames=()=>(D.games||[]).filter(g=>g.visible!==false);
 
   $$('[data-year]').forEach(x=>x.textContent=new Date().getFullYear());
@@ -31,14 +32,14 @@
 
   function cards(mount){
     const games=visibleGames();
-    mount.innerHTML=games.map((g,i)=>`<article class="game-card reveal"><a class="card-media" href="${path(g.page)}" aria-label="Open ${esc(g.title)}" ${g.cover?`style="background-image:url('${path(g.cover)}')"`:''}><span class="card-number">${String(i+1).padStart(2,'0')}</span><span class="card-status">${esc(g.status)}</span></a><div class="card-body"><div class="card-meta">${esc(g.genre)} · ${esc(g.platforms)}</div><h3>${esc(g.title)}</h3><p>${esc(plain(g.short))}</p><a class="card-link" href="${path(g.page)}">View project <span>→</span></a></div></article>`).join('');
+    mount.innerHTML=games.map((g,i)=>`<article class="game-card reveal"><a class="card-media" href="${path(g.page)}" aria-label="Open ${esc(g.title)}" ${g.cover?`style="background-image:url('${path(g.cover)}');background-size:${g.cardFit||'cover'}"`:''}><span class="card-number">${String(i+1).padStart(2,'0')}</span><span class="card-status">${esc(g.status)}</span></a><div class="card-body"><div class="card-meta">${esc(g.genre)} · ${esc(g.platforms)}</div><h3>${esc(g.title)}</h3><p>${esc(plain(g.short))}</p><a class="card-link" href="${path(g.page)}">View project <span>→</span></a></div></article>`).join('');
     reveal(mount);
   }
   function renderFeatured(){
     const g=visibleGames().find(x=>x.featured===true),section=$('[data-featured-section]'),mount=$('[data-featured-game]');
     if(!section||!mount||!g)return;
     section.hidden=false;
-    mount.innerHTML=`<article class="featured-showcase reveal"><a class="featured-visual" href="${path(g.page)}" ${g.cover?`style="background-image:url('${path(g.cover)}')"`:''}><span class="featured-stamp">Studio selection</span><span class="featured-status">${esc(g.status)}</span></a><div class="featured-copy"><div class="card-meta">${esc(g.genre)} · ${esc(g.platforms)}</div><h3>${esc(g.title)}</h3><p>${esc(plain(g.short))}</p><div class="featured-actions"><a class="btn primary" href="${path(g.page)}">Explore featured game</a>${g.itch?`<a class="btn" href="${esc(g.itch)}" target="_blank" rel="noopener">Open on itch.io</a>`:''}</div></div></article>`;
+    mount.innerHTML=`<article class="featured-showcase reveal"><a class="featured-visual" href="${path(g.page)}" ${g.cover?`style="background-image:url('${path(g.cover)}');background-size:${g.cardFit||'cover'}"`:''}><span class="featured-stamp">Studio selection</span><span class="featured-status">${esc(g.status)}</span></a><div class="featured-copy"><div class="card-meta">${esc(g.genre)} · ${esc(g.platforms)}</div><h3>${esc(g.title)}</h3><p>${esc(plain(g.short))}</p><div class="featured-actions"><a class="btn primary" href="${path(g.page)}">Explore featured game</a>${g.itch?`<a class="btn" href="${esc(g.itch)}" target="_blank" rel="noopener">Open on itch.io</a>`:''}</div></div></article>`;
     reveal(mount);
   }
   $$('[data-games-grid]').forEach(cards);
@@ -99,7 +100,7 @@
   }
   if(g){
     applyGameIdentity(g);
-    setSocialMeta(`${g.title} — Insiders Corporation`,plain(g.short||g.description?.[0]||''),g.cover?new URL(path(g.cover),location.href).href:'');
+    setSocialMeta(`${g.title} — Insiders Corporation`,plain(g.short||g.description?.[0]||''),g.cover?absolute(g.cover):'');
     document.title=`${g.title} — Insiders Corporation`;
     const hero=$('[data-game-hero]');
     if(hero&&g.cover)hero.style.backgroundImage=`url('${path(g.cover)}')`;
@@ -219,4 +220,37 @@
     const h1=$('.page-hero h1'),lead=$('.page-hero p');if(h1)h1.textContent=title;if(lead)lead.textContent=intro;
     const contact=$('.game-facts');if(contact&&S.pressEmail)contact.insertAdjacentHTML('afterbegin',`<dt>Press email</dt><dd><a href="mailto:${esc(S.pressEmail)}">${esc(S.pressEmail)}</a></dd>`);
   }
+})();
+
+
+
+/* V10 — data-driven site shell, storefronts, publisher galleries and responsive media. */
+(()=>{
+  const D=window.INSIDERS_DATA||{},S=D.studio||{},L=S.labels||{};const depth=document.body.dataset.depth==='1';
+  const $=(s,c=document)=>c.querySelector(s),$$=(s,c=document)=>[...c.querySelectorAll(s)];const esc=(v='')=>String(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+  const path=p=>!p?'':(/^https?:\/\//i.test(p)||/^(mailto:|tel:|#)/i.test(p)?p:(depth?'../':'')+String(p).replace(/^\.\//,''));
+  const root=document.documentElement;root.style.setProperty('--max',`${Number(S.siteMaxWidth)||1240}px`);root.style.setProperty('--site-pad',`${Math.max(12,Number(S.sitePadding)||24)}px`);root.style.setProperty('--card-min',`${Math.max(240,Number(S.cardMinWidth)||300)}px`);if(S.globalAccent)root.style.setProperty('--accent',S.globalAccent);if(S.globalBackground)root.style.setProperty('--bg',S.globalBackground);if(S.globalPanel)root.style.setProperty('--panel',S.globalPanel);if(S.globalText)root.style.setProperty('--text',S.globalText);
+  if(S.favicon){let f=$('link[rel~="icon"]');if(!f){f=document.createElement('link');f.rel='icon';document.head.append(f)}f.href=path(S.favicon)}
+  const page=document.body.dataset.page||'',gameId=document.body.dataset.game||document.body.dataset.publisherGame||'',game=(D.games||[]).find(g=>g.id===gameId);
+  const currentFile=location.pathname.split('/').pop()||'index.html';
+  function isActive(url=''){const clean=url.split('#')[0].split('?')[0].replace(/^\.\.\//,'').replace(/^\.\//,'');if(page==='publisher-assets'&&clean==='press.html')return true;if(currentFile===clean)return true;if(gameId&&page!=='publisher-assets'&&clean==='games.html')return true;return false}
+  const h=S.header||{},nav=(h.nav||[]).filter(x=>x.visible!==false&&x.label&&x.url);$$('.nav').forEach(n=>n.innerHTML=nav.map(x=>`<a class="${isActive(x.url)?'active':''}" href="${esc(path(x.url))}" ${x.newTab?'target="_blank" rel="noopener"':''}>${esc(x.label)}</a>`).join(''));$$('.mobile-menu').forEach(n=>{n.innerHTML=nav.map(x=>`<a class="${isActive(x.url)?'active':''}" href="${esc(path(x.url))}" ${x.newTab?'target="_blank" rel="noopener"':''}>${esc(x.label)}</a>`).join('')+(h.ctaUrl&&h.ctaLabel?`<a class="mobile-cta" href="${esc(path(h.ctaUrl))}" ${h.ctaNewTab?'target="_blank" rel="noopener"':''}>${esc(h.ctaLabel)}</a>`:'')});
+  $$('.site-header').forEach(header=>{header.classList.toggle('not-sticky',h.sticky===false);const inner=$('.header-inner',header);const brand=$('.brand',header);if(brand)brand.hidden=h.showLogo===false;let cta=$('.header-cta',header);if(h.ctaUrl&&h.ctaLabel){if(!cta){cta=document.createElement('a');cta.className='header-cta';inner?.insertBefore(cta,$('.menu-toggle',inner)||null)}cta.href=path(h.ctaUrl);cta.textContent=h.ctaLabel;cta.hidden=false;if(h.ctaNewTab){cta.target='_blank';cta.rel='noopener'}else{cta.removeAttribute('target');cta.removeAttribute('rel')}}else if(cta)cta.hidden=true});
+  const menu=$('.menu-toggle'),mobile=$('.mobile-menu');if(menu&&mobile)menu.onclick=()=>{const open=mobile.classList.toggle('open');menu.setAttribute('aria-expanded',String(open))};
+  const f=S.footer||{};$$('.footer').forEach(footer=>{const cols=(f.columns||[]).filter(c=>c&&((c.links||[]).length||c.title));footer.innerHTML=`<div class="wrap footer-builder">${f.showLogo&&S.logo?`<div class="footer-brand"><img src="${esc(path(S.logo))}" alt="${esc(S.name||'iNSIDERS Games')}"></div>`:''}<div class="footer-legal"><b>${esc(String(f.primaryText||'').replace('{year}',new Date().getFullYear()))}</b><span>${esc(f.secondaryText||'')}</span></div>${cols.length?`<div class="footer-columns">${cols.map(c=>`<div><b>${esc(c.title||'')}</b>${(c.links||[]).filter(l=>l.label&&l.url).map(l=>`<a href="${esc(path(l.url))}" ${l.newTab?'target="_blank" rel="noopener"':''}>${esc(l.label)}</a>`).join('')}</div>`).join('')}</div>`:''}</div>`});
+  if(page==='home'){
+    document.title=S.homeMetaTitle||document.title;const hp=$('[data-home-primary]'),hs=$('[data-home-secondary]');if(hp&&S.homePrimaryUrl)hp.href=path(S.homePrimaryUrl);if(hs&&S.homeSecondaryUrl)hs.href=path(S.homeSecondaryUrl);let meta=$('meta[name="description"]');if(!meta){meta=document.createElement('meta');meta.name='description';document.head.append(meta)}meta.content=S.homeMetaDescription||S.heroIntro||'';
+    const hero=$('[data-home-hero]');if(hero){hero.style.backgroundSize=S.homeHeroFit||'cover';hero.style.backgroundPosition=S.homeHeroPosition||'center'}
+    const news=$('[data-latest-news-section]');if(news){const ey=$('.eyebrow',news),h2=$('h2',news),a=$('.card-link',news);if(ey)ey.textContent=L.latestNewsEyebrow||'Latest transmissions';if(h2)h2.textContent=L.latestNewsTitle||'News & development';if(a)a.textContent=L.latestNewsLink||'View all news →'}
+    const facts=$$('.fact');if(facts[0])$('span',facts[0]).textContent=L.projectsFact||'Projects';if(facts[1])$('span',facts[1]).textContent=L.availableFact||'Available now';if(facts[2]){const b=$('b',facts[2]),sp=$('span',facts[2]);if(b)b.textContent=L.independentValue||'100%';if(sp)sp.textContent=L.independentFact||'Independent'}
+    $$('.game-card .card-link').forEach(a=>{a.innerHTML=`${esc(L.projectCardLink||'View project')} <span>→</span>`});const featured=$('.featured-showcase');if(featured){const stamp=$('.featured-stamp',featured),p=$('.featured-actions .primary',featured),store=$('.featured-actions .btn:not(.primary)',featured);if(stamp)stamp.textContent=L.featuredBadge||'Studio selection';if(p)p.textContent=L.featuredPrimary||'Explore featured game';if(store)store.textContent=L.featuredStore||'Open on itch.io'}
+  }
+  if(page==='contact'&&Array.isArray(S.contactCards)&&S.contactCards.length){const grid=$('.contact-grid');if(grid)grid.innerHTML=S.contactCards.filter(c=>c.title).map(c=>`<article class="contact-card reveal"><div class="eyebrow">${esc(c.eyebrow||'Contact')}</div><h2>${esc(c.title)}</h2><p>${esc(c.text||'')}</p>${c.url&&c.buttonLabel?`<a class="btn ${c.style==='primary'?'primary':''}" href="${esc(path(c.url))}" target="_blank" rel="noopener">${esc(c.buttonLabel)}</a>`:''}</article>`).join('')}
+  if(game){
+    document.title=`${game.title} — ${S.name||'iNSIDERS Games'}`;const hero=$('[data-game-hero]');if(hero){hero.style.backgroundSize=game.heroFit||'cover';hero.style.backgroundRepeat='no-repeat';hero.style.backgroundColor=game.backgroundColor||'#050505'}const logo=$('[data-game-logo]');if(logo)logo.style.maxWidth=`${Number(game.logoMaxWidth)||560}px`;const gallery=$('[data-gallery]');if(gallery)$$('img',gallery).forEach(img=>img.style.objectFit=game.galleryFit||'cover');
+    $$('.game-card').forEach(card=>{const media=$('.card-media',card);if(media)media.style.backgroundSize=game.cardFit||'cover'});
+    const stores=Object.entries(game.stores||{}).filter(([,v])=>v&&v.url);const cfg={steam:['Steam','steam.svg'],humble:['Humble Bundle','humblebundle.svg'],gog:['GOG','gogdotcom.svg'],epic:['Epic Games Store','epicgames.svg'],itch:['itch.io','itchdotio.svg'],gamejolt:['Game Jolt','gamejolt.svg']};const actions=$('.game-hero-content .actions');if(actions){actions.innerHTML=stores.map(([k,v],i)=>{const c=cfg[k]||[v.label||k,''];return `<a class="btn store-btn ${i===0?'primary':''}" href="${esc(v.url)}" target="_blank" rel="noopener">${c[1]?`<img src="${esc(path('assets/icons/stores/'+c[1]))}" alt="">`:''}<span>${esc(v.label||c[0])}</span></a>`}).join('')+(game.pressEnabled!==false?`<a class="btn" href="${esc(path('press/'+game.id+'.html'))}">${esc(L.publisherAssets||'Publisher assets')}</a>`:'');if(!stores.length&&game.itch)actions.insertAdjacentHTML('afterbegin',`<a class="btn primary" href="${esc(game.itch)}" target="_blank" rel="noopener">${esc(game.ctaLabel||'Play on itch.io')}</a>`)}
+  }
+  if(page==='publisher-assets'&&game){document.title=`${game.pressTitle||`${game.title} — Publisher Assets`} — ${S.name||'iNSIDERS Games'}`;const title=$('[data-publisher-title]'),intro=$('[data-publisher-intro]'),back=$('[data-publisher-game-link]'),mount=$('[data-publisher-assets]');if(title)title.textContent=game.pressTitle||`${game.title} — Publisher Assets`;if(intro)intro.textContent=game.pressIntro||'';if(back)back.href=path(game.page);const assets=game.pressAssets||[];if(mount)mount.innerHTML=assets.length?assets.map(a=>`<article class="publisher-asset-card"><a class="publisher-asset-preview" href="${esc(path(a.path))}" target="_blank" rel="noopener"><img src="${esc(path(a.path))}" alt="${esc(a.label||game.title)}" loading="lazy"></a><div class="publisher-asset-copy"><span>${esc((a.type||'asset').replace('-', ' '))}</span><h3>${esc(a.label||'Asset')}</h3>${a.note?`<p>${esc(a.note)}</p>`:''}<div class="publisher-asset-actions"><a href="${esc(path(a.path))}" target="_blank" rel="noopener">${esc(L.viewOriginal||'View original')}</a><a href="${esc(path(a.path))}" download>${esc(L.download||'Download')}</a></div></div></article>`).join(''):'<div class="media-empty">No publisher assets have been published for this game yet.</div>'}
+  if(S.name&&document.title.includes('Insiders Corporation'))document.title=document.title.replace('Insiders Corporation',S.name);
 })();
