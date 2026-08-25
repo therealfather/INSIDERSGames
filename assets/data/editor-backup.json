@@ -3,15 +3,15 @@
     "name": "iNSIDERS Games",
     "eyebrow": "Independent game studio",
     "headline": "Games made from places that should not exist.",
-    "intro": "Insiders Corporation creates compact, atmospheric games built around isolation, strange spaces and stories that stay with you after the screen goes dark.",
+    "intro": "iNSIDERS Games creates compact, atmospheric games built around isolation, strange spaces and stories that stay with you after the screen goes dark.",
     "discord": "https://discord.com/invite/bPS8Nx5F7P",
     "itch": "https://fatheronstream.itch.io/",
-    "logo": "assets/media/studio/branding/1787505075844-developer-logo.png",
+    "logo": "assets/media/studio/branding/1787609255295-insiders-games-logo-new.png",
     "heroImage": "assets/media/studio/hero/1787504714947-page-background.png",
     "heroMediaType": "image",
     "heroMedia": "assets/media/studio/hero/1787504714947-page-background.png",
-    "fontDisplay": "Oxanium",
-    "fontBody": "Oxanium",
+    "fontDisplay": "Chakra Petch",
+    "fontBody": "Chakra Petch",
     "heroEyebrow": "Independent game studio",
     "heroHeadline": "Worlds built to feel wrong.",
     "heroIntro": "Atmospheric games, hostile spaces and stories that refuse to explain themselves.",
@@ -34,9 +34,9 @@
     "featuredIntro": "The project currently receiving the studio spotlight.",
     "newsPageTitle": "News & Updates",
     "pressTitle": "Press Kit",
-    "pressIntro": "Official studio information, game descriptions, screenshots and contact links.",
-    "pressEmail": "tamaslegend@gmail.com",
-    "favicon": "assets/media/studio/branding/1787525665791-developer-logo.png",
+    "pressIntro": "Current studio information and links to game-specific press and publisher assets.",
+    "pressEmail": "",
+    "favicon": "assets/media/studio/branding/1787609255295-insiders-games-logo-new.png",
     "loadExternalFonts": true,
     "siteMaxWidth": 1240,
     "sitePadding": 24,
@@ -80,10 +80,35 @@
           "visible": true,
           "newTab": false
         }
-      ]
+      ],
+      "logo": "assets/media/studio/branding/1787609175955-insiders-games-logo-new.png",
+      "utility": {
+        "visible": true,
+        "label": "",
+        "links": [
+          {
+            "label": "Projects",
+            "url": "games.html",
+            "newTab": false,
+            "visible": true
+          },
+          {
+            "label": "Press",
+            "url": "press.html",
+            "newTab": false,
+            "visible": true
+          },
+          {
+            "label": "Discord ↗",
+            "url": "https://discord.com/invite/bPS8Nx5F7P",
+            "newTab": true,
+            "visible": true
+          }
+        ]
+      }
     },
     "footer": {
-      "showLogo": false,
+      "showLogo": true,
       "primaryText": "© {year} iNSIDERS Games",
       "secondaryText": "Tamas “FATHER” Alex. All rights reserved.",
       "columns": [
@@ -114,11 +139,6 @@
               "label": "Discord",
               "url": "https://discord.com/invite/bPS8Nx5F7P",
               "newTab": true
-            },
-            {
-              "label": "itch.io",
-              "url": "https://fatheronstream.itch.io/",
-              "newTab": true
             }
           ]
         }
@@ -131,15 +151,8 @@
         "text": "Development updates, discussion, feedback and direct contact with the studio community.",
         "buttonLabel": "Join the server",
         "url": "https://discord.com/invite/bPS8Nx5F7P",
-        "style": "primary"
-      },
-      {
-        "eyebrow": "Games",
-        "title": "itch.io",
-        "text": "Play the released projects and follow future releases from iNSIDERS Games.",
-        "buttonLabel": "Open itch.io",
-        "url": "https://fatheronstream.itch.io/",
-        "style": "secondary"
+        "style": "primary",
+        "newTab": true
       }
     ],
     "labels": {
@@ -164,24 +177,93 @@
       "gameCardButton": "View project",
       "featuredEyebrow": "Featured game",
       "featuredButton": "View project",
-      "readArticle": "Read article"
+      "readArticle": "Read article",
+      "heroIndexLabel": "Current projects",
+      "readFullOverview": "Read full overview",
+      "moreSections": "more sections",
+      "closeLightbox": "Close ×",
+      "skipToContent": "Skip to content",
+      "menu": "Menu"
     },
     "homeMetaTitle": "iNSIDERS Games — Independent Game Studio",
     "homeMetaDescription": "Atmospheric games, hostile spaces and stories that refuse to explain themselves.",
-    "globalAccent": "#0dbd00",
-    "globalBackground": "#050505",
-    "globalPanel": "#0c0c0c",
-    "globalText": "#f1f1ed",
+    "globalAccent": "#d89132",
+    "globalBackground": "#070809",
+    "globalPanel": "#171819",
+    "globalText": "#ffffff",
     "homePrimaryUrl": "games.html",
-    "homeSecondaryUrl": "https://discord.com/invite/bPS8Nx5F7P"
+    "homeSecondaryUrl": "https://discord.com/invite/bPS8Nx5F7P",
+    "pages": {
+      "games": {
+        "browserTitle": "Games — iNSIDERS Games",
+        "eyebrow": "Project archive",
+        "title": "Games",
+        "intro": "Released projects and games currently in development.",
+        "emptyText": "No public games are available yet."
+      },
+      "news": {
+        "browserTitle": "News & Updates — iNSIDERS Games",
+        "eyebrow": "Studio transmission",
+        "title": "News & Updates",
+        "intro": "Development posts, release notes and announcements from iNSIDERS Games.",
+        "emptyText": "No published news yet."
+      },
+      "contact": {
+        "browserTitle": "Contact — iNSIDERS Games",
+        "eyebrow": "INSIDERS / PUBLIC ARCHIVE",
+        "title": "Contact",
+        "intro": "Follow the studio, play the games or join the community."
+      },
+      "press": {
+        "browserTitle": "Press Kit — iNSIDERS Games",
+        "eyebrow": "Press resources",
+        "title": "Press Kit",
+        "intro": "Current studio information and links to game-specific press and publisher assets.",
+        "showStudio": true,
+        "studioEyebrow": "Studio",
+        "studioTitle": "iNSIDERS Games",
+        "studioDescription": "iNSIDERS Games is an independent game studio founded by Tamas “FATHER” Alex, focused on atmospheric games, retro technology and personal worlds.",
+        "featureChips": [],
+        "factsTitle": "Press information",
+        "facts": [],
+        "linksTitle": "Official links",
+        "links": [
+          {
+            "label": "Discord",
+            "url": "https://discord.com/invite/bPS8Nx5F7P",
+            "newTab": true,
+            "visible": true
+          },
+          {
+            "label": "Contact page",
+            "url": "contact.html",
+            "newTab": false,
+            "visible": true
+          }
+        ],
+        "showGames": true,
+        "gamesEyebrow": "Games",
+        "gamesTitle": "Game press resources",
+        "gamesIntro": "Open a game to view its current overview, screenshots, trailer, storefronts and published press assets.",
+        "footerNote": "Press resources"
+      },
+      "notFound": {
+        "browserTitle": "404 — iNSIDERS Games",
+        "eyebrow": "Signal lost",
+        "title": "404",
+        "intro": "This page does not exist.",
+        "buttonLabel": "Return home",
+        "buttonUrl": "index.html"
+      }
+    }
   },
   "games": [
     {
       "id": "pay-your-deeds",
       "title": "Pay Your Deeds",
-      "status": "Available on Itch.io",
-      "genre": "Game",
-      "engine": "",
+      "status": "RELEASED",
+      "genre": "Strategy",
+      "engine": "PYTHON",
       "platforms": "Windows, Linux",
       "short": "<!--StartFragment--><p style=\"padding: 0px; margin: 0px 0px 16px; color: rgb(238, 238, 238); font-family: Lato, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\"><strong style=\"font-weight: bold;\">Pay Your Deeds</strong><span>&nbsp;</span>is a roguelike deck-builder played on a<span>&nbsp;</span><strong style=\"font-weight: bold;\">5×4 slot reel</strong>.</p><p style=\"padding: 0px; margin: 0px 0px 16px; color: rgb(238, 238, 238); font-family: Lato, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">You are in debt, and every few days the Sector expects another payment.</p><p style=\"padding: 0px; margin: 0px 0px 16px; color: rgb(238, 238, 238); font-family: Lato, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\">Spin the reel, collect Scrap Credits and add new Symbols to your build. Find combinations that work together, remove the ones that don't, and try to make enough money before your next Deed is due.</p><p style=\"padding: 0px; margin: 0px 0px 16px; color: rgb(238, 238, 238); font-family: Lato, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;\"><strong style=\"font-weight: bold;\">If you can't pay, the run is over.</strong></p><!--EndFragment-->",
       "description": [
@@ -219,17 +301,16 @@
       ],
       "features": [
         "100+ Symbols",
-        "24 Deeds",
         "35 Power Store upgrades",
         "Endless Mode",
         "Unknown Mode"
       ],
       "page": "games/pay-your-deeds.html",
       "itch": "https://fatheronstream.itch.io/pay-your-deeds",
-      "trailerType": "none",
-      "trailer": "",
-      "logo": "assets/media/pay-your-deeds/branding/1787504914356-payyourdeeds-logo-2.png",
-      "cover": "assets/media/pay-your-deeds/branding/1787505275456-page-background.png",
+      "trailerType": "youtube",
+      "trailer": "https://www.youtube.com/watch?v=6AWxkHfRKzE",
+      "logo": "assets/media/pay-your-deeds/branding/1787609347583-pay-your-deeds.png",
+      "cover": "assets/media/pay-your-deeds/branding/1787609359591-library-header.png",
       "gallery": [
         "assets/media/pay-your-deeds/gallery/1787505246183-screenshot-2026-08-21-112154.png",
         "assets/media/pay-your-deeds/gallery/1787505246261-screenshot-2026-08-21-112143.png",
@@ -249,55 +330,91 @@
           "date": "2026-08-22",
           "title": "Pay your Deeds - 1.1.0 - DEMO RELEASE",
           "text": "<h1>A new <strong>Demo version of Pay Your Deeds</strong> is now available.</h1>\n<p>With the game continuing to grow, I wanted there to be a proper way for new players to experience the core gameplay before purchasing the full version.\n</p>\n<p>The Demo is not a separate experimental build or an outdated version of the game. It is based on the current game and has been specifically configured to provide a limited but representative introduction to the full experience.\n</p>\n<h2>What is available in the Demo?</h2>\n<p>The Demo includes access to:\n</p>\n<ul><li><strong>Campaign Mode</strong>\n</li><li><strong>Clearance 01</strong>\n</li><li>The core gameplay loop\n</li><li>Available Symbols and progression mechanics within the Demo\n</li><li>Upgrades and systems encountered during Clearance 01\n</li><li>The main gameplay structure of Pay Your Deeds\n</li></ul>\n<p>The game may still display some of the content available beyond the Demo so players can see what exists in the full version.\n</p>\n<p>However:\n</p>\n<ul><li><strong>Clearance 02–10 are not available in the Demo</strong>\n</li><li><strong>Endless Mode is not available in the Demo</strong>\n</li><li><strong>UNKNOWN Mode is not available in the Demo</strong>\n</li></ul>\n<p>Attempting to access restricted content will clearly indicate that it is not available in the Demo.\n</p>\n<p>The Demo also uses its own progression data, allowing it to exist independently from the full game without interfering with full-version saves.\n</p>\n<h2>Full Game Price Update</h2>\n<p>Alongside the release of the Demo, the price of <strong>Pay Your Deeds</strong> has been updated to:\n</p>\n<h1><strong>$9.99 USD</strong></h1>\n<p>The game has changed considerably throughout development, with more content, systems, balancing work, platform support and improvements being added over time.\n</p>\n<p>The new price is intended to better represent the current state and scope of the full game while still keeping it accessible.\n</p>\n<h2>Steam Release Coming Soon</h2>\n<p><img src=\"https://img.itch.zone/aW1nLzI5NDQ1NzgyLnBuZw==/original/ipqX2I.png\"></p>\n<p>I am also preparing <strong>Pay Your Deeds for release on Steam</strong>.\n</p>\n<p>The Steam page is currently being worked on and it will have&nbsp;Windows and Linux support planned for the release on Steam.\n</p>\n<p>More information about the Steam launch, availability and release details will be posted as everything gets closer to being ready.\n</p>\n<p>Development will continue with bug fixes, balancing improvements, polish and additional work where needed.\n</p>\n<p>Thank you to everyone who has supported the project, purchased the game, tested builds, reported issues or suggested improvements.\n</p>\n<p>If you haven't played Pay Your Deeds yet, the Demo is now the easiest way to give it a try and see whether the full game is for you.</p>",
-          "link": "https://fatheronstream.itch.io/pay-your-deeds/devlog/1637358/pay-your-deeds-110-demo-release"
+          "link": ""
         }
       ],
       "visible": true,
       "featured": true,
-      "ctaLabel": "Available on Itch.io",
+      "ctaLabel": "Available on Itch.io / Humble Bundle",
       "aboutEyebrow": "About the game",
       "aboutTitle": "Inside the project",
       "trailerEyebrow": "Official footage",
       "trailerTitle": "Trailer",
       "galleryEyebrow": "Game images",
       "galleryTitle": "Gallery",
-      "blocks": [],
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": ""
+        }
+      ],
       "theme": "terminal",
+      "useGameTheme": false,
       "accentColor": "#1fb800",
-      "backgroundColor": "#000000",
-      "panelColor": "#ffffff",
-      "gameFontDisplay": "Oxanium",
-      "gameFontBody": "Space Grotesk",
-      "heroPosition": "center",
+      "backgroundColor": "#070809",
+      "panelColor": "#171819",
+      "gameFontDisplay": "Chakra Petch",
+      "gameFontBody": "Chakra Petch",
+      "heroPosition": "right",
       "archiveLabel": "Project file",
       "cardFit": "contain",
-      "heroFit": "cover",
+      "heroFit": "contain",
       "galleryFit": "cover",
       "logoMaxWidth": 560,
       "stores": {
         "steam": {
           "label": "Steam",
-          "url": ""
+          "url": "",
+          "enabled": true,
+          "display": "button",
+          "embed": "",
+          "note": "Official Storefront",
+          "buttonLabel": "Open Steam"
         },
         "humble": {
           "label": "Humble Bundle",
-          "url": ""
+          "url": "https://www.humblebundle.com/g/pay_your_deeds",
+          "enabled": true,
+          "display": "widget",
+          "embed": "<iframe src=\"https://www.humblebundle.com/widget/v2/product/pay_your_deeds_widget/6QCbeJngJE?theme=light\" width=\"526\" height=\"263\" style=\"border: none;\" scrolling=\"no\" frameborder=\"0\"></iframe>",
+          "note": "Official Storefront",
+          "buttonLabel": "Open Humble Bundle"
         },
         "gog": {
           "label": "GOG",
-          "url": ""
+          "url": "",
+          "enabled": true,
+          "display": "button",
+          "embed": "",
+          "note": "Official Storefront",
+          "buttonLabel": "Open GOG"
         },
         "epic": {
           "label": "Epic Games Store",
-          "url": ""
+          "url": "",
+          "enabled": true,
+          "display": "button",
+          "embed": "",
+          "note": "Official Storefront",
+          "buttonLabel": "Open Epic Games Store"
         },
         "itch": {
           "label": "itch.io",
-          "url": "https://fatheronstream.itch.io/pay-your-deeds"
+          "url": "https://fatheronstream.itch.io/pay-your-deeds",
+          "enabled": true,
+          "display": "widget",
+          "embed": "<iframe frameborder=\"0\" src=\"https://itch.io/embed/4897833?linkback=true&amp;border_width=0&amp;bg_color=000000&amp;fg_color=ffffff&amp;link_color=008d2e&amp;border_color=333333\" width=\"550\" height=\"165\"><a href=\"https://fatheronstream.itch.io/pay-your-deeds\">Pay Your Deeds by FATHER</a></iframe>",
+          "note": "Official Storefront",
+          "buttonLabel": "Open itch.io"
         },
         "gamejolt": {
           "label": "Game Jolt",
-          "url": ""
+          "url": "",
+          "enabled": true,
+          "display": "button",
+          "embed": "",
+          "note": "Official Storefront",
+          "buttonLabel": "Open Game Jolt"
         }
       },
       "pressEnabled": true,
@@ -323,13 +440,6 @@
           "label": "Bundle Header",
           "type": "other",
           "path": "assets/media/pay-your-deeds/press/1787525712417-bundle-header.png",
-          "note": ""
-        },
-        {
-          "id": "mt6enn36viu5",
-          "label": "Client Icon",
-          "type": "other",
-          "path": "assets/media/pay-your-deeds/press/1787525712485-client-icon.png",
           "note": ""
         },
         {
@@ -416,15 +526,74 @@
           "path": "assets/media/pay-your-deeds/press/1787525713290-vertical-capsule.png",
           "note": ""
         }
-      ]
+      ],
+      "text": "<iframe src=\"https://www.humblebundle.com/widget/v2/product/pay_your_deeds_widget/6QCbeJngJE?theme=light\" width=\"526\" height=\"263\" style=\"border: none;\" scrolling=\"no\" frameborder=\"0\"></iframe>",
+      "trailerText": "",
+      "storeTitle": "Get the game",
+      "storeIntro": "Choose the storefront that works for you.",
+      "ctaButtons": [
+        {
+          "label": "Purchase",
+          "url": "#buy",
+          "style": "primary",
+          "visible": true,
+          "newTab": false
+        }
+      ],
+      "collapseLongDescription": true,
+      "descriptionPreviewCount": 10,
+      "collapseLongUpdates": true,
+      "updatePreviewChars": 520,
+      "pageLabels": {
+        "navOverview": "Overview",
+        "navTrailer": "Trailer",
+        "navBuy": "Buy",
+        "navDetails": "Details",
+        "navRoadmap": "Roadmap",
+        "navUpdates": "Updates",
+        "navScreenshots": "Screenshots",
+        "navPress": "Press / Assets",
+        "projectInfo": "Project information",
+        "status": "Status",
+        "genre": "Genre",
+        "engine": "Engine",
+        "platforms": "Platforms",
+        "trailerGetGame": "Get the game ↓",
+        "trailerEmpty": "No trailer published yet.",
+        "watchTrailer": "Watch official trailer",
+        "openVideo": "Open video",
+        "storesEyebrow": "Storefronts",
+        "gameFile": "Game file",
+        "customEyebrow": "More about the game",
+        "customTitle": "Details",
+        "galleryNote": "Click an image to open it at full size.",
+        "roadmapEmpty": "Roadmap coming soon.",
+        "roadmapOpen": "Open full roadmap",
+        "readFullOverview": "Read full overview",
+        "readFullUpdate": "Read full update",
+        "openLinkedPost": "Open linked post →",
+        "updateFallback": "Update",
+        "storeOpen": "Open"
+      },
+      "publisherPage": {
+        "eyebrow": "Publisher / Press resources",
+        "backLabel": "View game page",
+        "sectionEyebrow": "Approved files",
+        "sectionTitle": "Asset gallery",
+        "sectionIntro": "Open or download the original files supplied by the developer.",
+        "emptyText": "No publisher assets published yet.",
+        "viewLabel": "View original",
+        "downloadLabel": "Download",
+        "footerText": "iNSIDERS Games"
+      }
     },
     {
       "id": "sector-rot",
       "title": "Sector Rot",
-      "status": "Available on itch.io",
-      "genre": "Game",
-      "engine": "Python / Tk",
-      "platforms": "Windows",
+      "status": "RELEASED",
+      "genre": "Survival",
+      "engine": "PYTHON",
+      "platforms": "Windows, Linux",
       "short": "<!--StartFragment--><p style=\"line-height: 1.4; font-family: &quot;04b_03&quot;, Lato, LatoExtended, sans-serif; font-size: 16px; background-color: rgb(0, 0, 0);\"><strong>The Sector is alive. Every expedition can be your last.</strong></p><p style=\"line-height: 1.4; font-family: &quot;04b_03&quot;, Lato, LatoExtended, sans-serif; font-size: 16px; background-color: rgb(0, 0, 0);\"><strong>Sector Rot</strong>&nbsp;is a tactical ASCII survival game about exploring a hostile, persistent world filled with mutants, armed factions, toxic ruins, abandoned structures and catastrophic Emissions.</p><!--EndFragment-->",
       "description": [
         "The Sector is alive. Every expedition can be your last.",
@@ -546,55 +715,144 @@
       "galleryTitle": "Gallery",
       "blocks": [],
       "theme": "terminal",
+      "useGameTheme": false,
       "accentColor": "#5dff47",
-      "backgroundColor": "#050505",
-      "panelColor": "#0d0d0d",
-      "gameFontDisplay": "Oxanium",
-      "gameFontBody": "Oxanium",
+      "backgroundColor": "#070809",
+      "panelColor": "#171819",
+      "gameFontDisplay": "Chakra Petch",
+      "gameFontBody": "Chakra Petch",
       "heroPosition": "center",
       "archiveLabel": "Project file",
-      "cardFit": "cover",
-      "heroFit": "cover",
+      "cardFit": "contain",
+      "heroFit": "contain",
       "galleryFit": "cover",
       "logoMaxWidth": 560,
       "stores": {
         "steam": {
           "label": "Steam",
-          "url": ""
+          "url": "",
+          "enabled": true,
+          "display": "button",
+          "embed": "",
+          "note": "Official storefront",
+          "buttonLabel": "Open Steam"
         },
         "humble": {
           "label": "Humble Bundle",
-          "url": ""
+          "url": "",
+          "enabled": true,
+          "display": "button",
+          "embed": "",
+          "note": "Official storefront",
+          "buttonLabel": "Open Humble Bundle"
         },
         "gog": {
           "label": "GOG",
-          "url": ""
+          "url": "",
+          "enabled": true,
+          "display": "button",
+          "embed": "",
+          "note": "Official storefront",
+          "buttonLabel": "Open GOG"
         },
         "epic": {
           "label": "Epic Games Store",
-          "url": ""
+          "url": "",
+          "enabled": true,
+          "display": "button",
+          "embed": "",
+          "note": "Official storefront",
+          "buttonLabel": "Open Epic Games Store"
         },
         "itch": {
           "label": "itch.io",
-          "url": "https://fatheronstream.itch.io/sector-rot"
+          "url": "https://fatheronstream.itch.io/sector-rot",
+          "enabled": true,
+          "display": "button",
+          "embed": "",
+          "note": "Official storefront",
+          "buttonLabel": "Open itch.io"
         },
         "gamejolt": {
           "label": "Game Jolt",
-          "url": ""
+          "url": "",
+          "enabled": true,
+          "display": "button",
+          "embed": "",
+          "note": "Official storefront",
+          "buttonLabel": "Open Game Jolt"
         }
       },
       "pressEnabled": false,
       "pressTitle": "Sector Rot — Publisher Assets",
       "pressIntro": "Approved logos, key art, capsules, screenshots and other publisher-ready images for this game.",
-      "pressAssets": []
+      "pressAssets": [],
+      "trailerText": "",
+      "storeTitle": "Get the game",
+      "storeIntro": "Choose the storefront that works for you.",
+      "ctaButtons": [
+        {
+          "label": "Buy on itch.io",
+          "url": "#buy",
+          "style": "primary",
+          "visible": true,
+          "newTab": false
+        }
+      ],
+      "collapseLongDescription": true,
+      "descriptionPreviewCount": 10,
+      "collapseLongUpdates": true,
+      "updatePreviewChars": 520,
+      "pageLabels": {
+        "navOverview": "Overview",
+        "navTrailer": "Trailer",
+        "navBuy": "Buy",
+        "navDetails": "Details",
+        "navRoadmap": "Roadmap",
+        "navUpdates": "Updates",
+        "navScreenshots": "Screenshots",
+        "navPress": "Press / Assets",
+        "projectInfo": "Project information",
+        "status": "Status",
+        "genre": "Genre",
+        "engine": "Engine",
+        "platforms": "Platforms",
+        "trailerGetGame": "Get the game ↓",
+        "trailerEmpty": "No trailer published yet.",
+        "watchTrailer": "Watch official trailer",
+        "openVideo": "Open video",
+        "storesEyebrow": "Storefronts",
+        "gameFile": "Game file",
+        "customEyebrow": "More about the game",
+        "customTitle": "Details",
+        "galleryNote": "Click an image to open it at full size.",
+        "roadmapEmpty": "Roadmap coming soon.",
+        "roadmapOpen": "Open full roadmap",
+        "readFullOverview": "Read full overview",
+        "readFullUpdate": "Read full update",
+        "openLinkedPost": "Open linked post →",
+        "updateFallback": "Update",
+        "storeOpen": "Open"
+      },
+      "publisherPage": {
+        "eyebrow": "Publisher / Press resources",
+        "backLabel": "View game page",
+        "sectionEyebrow": "Approved files",
+        "sectionTitle": "Asset gallery",
+        "sectionIntro": "Open or download the original files supplied by the developer.",
+        "emptyText": "No publisher assets published yet.",
+        "viewLabel": "View original",
+        "downloadLabel": "Download",
+        "footerText": "iNSIDERS Games"
+      }
     },
     {
       "id": "the-outsiders",
       "title": "The Outsiders",
-      "status": "Available on itch.io",
-      "genre": "Atmospheric horror",
-      "engine": "Godot",
-      "platforms": "Windows / Linux",
+      "status": "RELEASED",
+      "genre": "Horror",
+      "engine": "GODOT",
+      "platforms": "Windows, Linux",
       "short": "You are a member of iNSIDERS CORPORATION, an organization that collects and investigates strange anomaly objects and locations.",
       "description": [
         "You are a member of iNSIDERS CORPORATION, an organization that collects and investigates strange anomaly objects and locations.",
@@ -624,11 +882,12 @@
       "visible": true,
       "featured": false,
       "theme": "vhs",
+      "useGameTheme": false,
       "accentColor": "#f0d360",
-      "backgroundColor": "#0b0907",
-      "panelColor": "#15110c",
-      "gameFontDisplay": "Rajdhani",
-      "gameFontBody": "Space Grotesk",
+      "backgroundColor": "#070809",
+      "panelColor": "#171819",
+      "gameFontDisplay": "Chakra Petch",
+      "gameFontBody": "Chakra Petch",
       "heroPosition": "center",
       "archiveLabel": "Recovered case file",
       "showFacts": true,
@@ -665,40 +924,128 @@
         }
       ],
       "blocks": [],
-      "cardFit": "cover",
-      "heroFit": "cover",
+      "cardFit": "contain",
+      "heroFit": "contain",
       "galleryFit": "cover",
       "logoMaxWidth": 560,
       "stores": {
         "steam": {
           "label": "Steam",
-          "url": ""
+          "url": "",
+          "enabled": true,
+          "display": "button",
+          "embed": "",
+          "note": "Official storefront",
+          "buttonLabel": "Open Steam"
         },
         "humble": {
           "label": "Humble Bundle",
-          "url": ""
+          "url": "",
+          "enabled": true,
+          "display": "button",
+          "embed": "",
+          "note": "Official storefront",
+          "buttonLabel": "Open Humble Bundle"
         },
         "gog": {
           "label": "GOG",
-          "url": ""
+          "url": "",
+          "enabled": true,
+          "display": "button",
+          "embed": "",
+          "note": "Official storefront",
+          "buttonLabel": "Open GOG"
         },
         "epic": {
           "label": "Epic Games Store",
-          "url": ""
+          "url": "",
+          "enabled": true,
+          "display": "button",
+          "embed": "",
+          "note": "Official storefront",
+          "buttonLabel": "Open Epic Games Store"
         },
         "itch": {
           "label": "itch.io",
-          "url": "https://fatheronstream.itch.io/the-outsiders"
+          "url": "https://fatheronstream.itch.io/the-outsiders",
+          "enabled": true,
+          "display": "button",
+          "embed": "",
+          "note": "Official storefront",
+          "buttonLabel": "Open itch.io"
         },
         "gamejolt": {
           "label": "Game Jolt",
-          "url": ""
+          "url": "",
+          "enabled": true,
+          "display": "button",
+          "embed": "",
+          "note": "Official storefront",
+          "buttonLabel": "Open Game Jolt"
         }
       },
       "pressEnabled": false,
       "pressTitle": "The Outsiders — Publisher Assets",
       "pressIntro": "Approved logos, key art, capsules, screenshots and other publisher-ready images for this game.",
-      "pressAssets": []
+      "pressAssets": [],
+      "trailerText": "",
+      "storeTitle": "Get the game",
+      "storeIntro": "Choose the storefront that works for you.",
+      "ctaButtons": [
+        {
+          "label": "Buy on itch.io",
+          "url": "#buy",
+          "style": "primary",
+          "visible": true,
+          "newTab": false
+        }
+      ],
+      "collapseLongDescription": true,
+      "descriptionPreviewCount": 10,
+      "collapseLongUpdates": true,
+      "updatePreviewChars": 520,
+      "pageLabels": {
+        "navOverview": "Overview",
+        "navTrailer": "Trailer",
+        "navBuy": "Buy",
+        "navDetails": "Details",
+        "navRoadmap": "Roadmap",
+        "navUpdates": "Updates",
+        "navScreenshots": "Screenshots",
+        "navPress": "Press / Assets",
+        "projectInfo": "Project information",
+        "status": "Status",
+        "genre": "Genre",
+        "engine": "Engine",
+        "platforms": "Platforms",
+        "trailerGetGame": "Get the game ↓",
+        "trailerEmpty": "No trailer published yet.",
+        "watchTrailer": "Watch official trailer",
+        "openVideo": "Open video",
+        "storesEyebrow": "Storefronts",
+        "gameFile": "Game file",
+        "customEyebrow": "More about the game",
+        "customTitle": "Details",
+        "galleryNote": "Click an image to open it at full size.",
+        "roadmapEmpty": "Roadmap coming soon.",
+        "roadmapOpen": "Open full roadmap",
+        "readFullOverview": "Read full overview",
+        "readFullUpdate": "Read full update",
+        "openLinkedPost": "Open linked post →",
+        "updateFallback": "Update",
+        "storeOpen": "Open"
+      },
+      "publisherPage": {
+        "eyebrow": "Publisher / Press resources",
+        "backLabel": "View game page",
+        "sectionEyebrow": "Approved files",
+        "sectionTitle": "Asset gallery",
+        "sectionIntro": "Open or download the original files supplied by the developer.",
+        "emptyText": "No publisher assets published yet.",
+        "viewLabel": "View original",
+        "downloadLabel": "Download",
+        "footerText": "iNSIDERS Games"
+      }
     }
   ],
   "articles": [
@@ -722,68 +1069,70 @@
   ],
   "pages": [],
   "media": [
-    "assets/media/inside-out/branding/1784646598772-insideout_background_game_site.png",
-    "assets/media/inside-out/branding/1784647261695-insideout_background_game_site.png",
-    "assets/media/inside-out/gallery/1784646619778-f6at0v.png",
-    "assets/media/inside-out/gallery/1784646619835-g6tau4.png",
-    "assets/media/inside-out/gallery/1784647266545-g6tau4.png",
-    "assets/media/inside-out/gallery/1784647266485-f6at0v.png",
-    "assets/media/rot-inside/branding/1784646655729-rot_inside_icon.png",
-    "assets/media/rot-inside/branding/1784646651442-rotinside_background_game_site.png",
-    "assets/media/rot-inside/branding/1784646914653-rot_inside_icon.png",
-    "assets/media/rot-inside/branding/1784647181622-rotinside_background_game_site.png",
-    "assets/media/rot-inside/gallery/1784668328840-qssm-07-21-2026-212349.png",
-    "assets/media/rot-inside/gallery/1784668328902-qssm-07-21-2026-212354.png",
-    "assets/media/rot-inside/gallery/1784668329028-qssm-lqdm1-07-21-2026-213537.png",
-    "assets/media/rot-inside/gallery/1784668329089-qssm-lqdm1-07-21-2026-213547.png",
-    "assets/media/rot-inside/gallery/1784668328965-qssm-07-21-2026-212357.png",
+    "assets/media/pay-your-deeds/branding/1787504914356-payyourdeeds-logo-2.png",
+    "assets/media/pay-your-deeds/branding/1787504919227-library-header.png",
+    "assets/media/pay-your-deeds/branding/1787505098185-community-icon.png",
+    "assets/media/pay-your-deeds/branding/1787505275456-page-background.png",
+    "assets/media/pay-your-deeds/branding/1787609336552-main-capsule.png",
+    "assets/media/pay-your-deeds/branding/1787609347583-pay-your-deeds.png",
+    "assets/media/pay-your-deeds/branding/1787609359591-library-header.png",
+    "assets/media/pay-your-deeds/gallery/1787505246183-screenshot-2026-08-21-112154.png",
+    "assets/media/pay-your-deeds/gallery/1787505246261-screenshot-2026-08-21-112143.png",
+    "assets/media/pay-your-deeds/gallery/1787505246334-screenshot-2026-08-21-112137.png",
+    "assets/media/pay-your-deeds/gallery/1787505246396-screenshot-2026-08-21-112135.png",
+    "assets/media/pay-your-deeds/gallery/1787505246457-screenshot-2026-08-21-112111.png",
+    "assets/media/pay-your-deeds/press/1787525712286-broadcast-left-panel.png",
+    "assets/media/pay-your-deeds/press/1787525712347-broadcast-right-panel.png",
+    "assets/media/pay-your-deeds/press/1787525712417-bundle-header.png",
+    "assets/media/pay-your-deeds/press/1787525712546-community-icon.png",
+    "assets/media/pay-your-deeds/press/1787525712709-event-cover.png",
+    "assets/media/pay-your-deeds/press/1787525712770-event-header.png",
+    "assets/media/pay-your-deeds/press/1787525712834-header-capsule.png",
+    "assets/media/pay-your-deeds/press/1787525712899-library-capsule.png",
+    "assets/media/pay-your-deeds/press/1787525712959-library-header.png",
+    "assets/media/pay-your-deeds/press/1787525713014-library-hero.png",
+    "assets/media/pay-your-deeds/press/1787525713072-main-capsule.png",
+    "assets/media/pay-your-deeds/press/1787525713126-page-background.png",
+    "assets/media/pay-your-deeds/press/1787525713180-payyourdeeds-logo-2.png",
+    "assets/media/pay-your-deeds/press/1787525713235-small-capsule.png",
+    "assets/media/pay-your-deeds/press/1787525713290-vertical-capsule.png",
     "assets/media/sector-rot/branding/1786275626146-sector-rot-new-logo.png",
-    "assets/media/sector-rot/branding/1786275658304-sector-rot-logo.png",
     "assets/media/sector-rot/branding/1786275653879-image-88-1.png",
+    "assets/media/sector-rot/branding/1786275658304-sector-rot-logo.png",
     "assets/media/sector-rot/gallery/1786275763314-awzb-y.png",
     "assets/media/sector-rot/gallery/1786275768730-pwhrcx.png",
-    "assets/media/studio/hero/1784649144950-image-56.png",
-    "assets/media/studio/hero/1784650358894-image-56.png",
-    "assets/media/studio/hero/1784668097223-image-56.png",
+    "assets/media/studio/branding/1787609175955-insiders-games-logo-new.png",
+    "assets/media/studio/branding/1787609197342-insiders-games-logo-new.png",
+    "assets/media/studio/branding/1787609255295-insiders-games-logo-new.png",
     "assets/media/studio/hero/1787504714947-page-background.png",
-    "assets/media/studio/hero/1784648617433-rotinside-background-game-site.png",
-    "assets/media/studio/hero/1784667469021-image-56.png",
     "assets/media/studio/library/1787504733265-broadcast-left-panel.png",
-    "assets/media/studio/library/1787504733516-community-icon.png",
     "assets/media/studio/library/1787504733330-broadcast-right-panel.png",
-    "assets/media/studio/library/1787504733456-client-icon.png",
-    "assets/media/studio/library/1787504733678-event-cover.png",
-    "assets/media/studio/library/1787504733625-developer-logo.png",
-    "assets/media/studio/library/1787504733571-developer-header.png",
-    "assets/media/studio/library/1787504733732-event-header.png",
-    "assets/media/studio/library/1787504734035-itch-io-wishlist-on-steam-banner-2.png",
     "assets/media/studio/library/1787504733393-bundle-header.png",
+    "assets/media/studio/library/1787504733456-client-icon.png",
+    "assets/media/studio/library/1787504733516-community-icon.png",
+    "assets/media/studio/library/1787504733571-developer-header.png",
+    "assets/media/studio/library/1787504733678-event-cover.png",
+    "assets/media/studio/library/1787504733732-event-header.png",
     "assets/media/studio/library/1787504733793-header-capsule.png",
     "assets/media/studio/library/1787504733856-itch-io-join-our-discord-banner-3.png",
-    "assets/media/studio/library/1787504734148-library-header.png",
-    "assets/media/studio/library/1787504733973-itch-io-soon-on-steam-banner-2.png",
     "assets/media/studio/library/1787504733916-itch-io-logo-page.png",
+    "assets/media/studio/library/1787504733973-itch-io-soon-on-steam-banner-2.png",
+    "assets/media/studio/library/1787504734035-itch-io-wishlist-on-steam-banner-2.png",
     "assets/media/studio/library/1787504734091-library-capsule.png",
+    "assets/media/studio/library/1787504734148-library-header.png",
     "assets/media/studio/library/1787504734202-library-hero.png",
     "assets/media/studio/library/1787504734260-main-capsule.png",
     "assets/media/studio/library/1787504734317-page-background.png",
-    "assets/media/studio/library/1787504734518-vertical-capsule.png",
-    "assets/media/studio/library/1787504734443-small-capsule.png",
     "assets/media/studio/library/1787504734374-payyourdeeds-logo-2.png",
-    "assets/media/the-outsiders/branding/1784646506628-theoutsiders_banner_new_1-1-.png",
+    "assets/media/studio/library/1787504734443-small-capsule.png",
+    "assets/media/studio/library/1787504734518-vertical-capsule.png",
     "assets/media/the-outsiders/branding/1784647206615-theoutsiders_banner_new_1-1-.png",
-    "assets/media/the-outsiders/gallery/1784646537341-iyhorg.png",
-    "assets/media/the-outsiders/gallery/1784646537464-mjt_ux.png",
-    "assets/media/the-outsiders/gallery/1784646537644-mmyd5c.png",
-    "assets/media/the-outsiders/gallery/1784646537401-v58vam.png",
-    "assets/media/the-outsiders/gallery/1784647217144-v58vam.png",
-    "assets/media/the-outsiders/gallery/1784646537524-elxjib.png",
-    "assets/media/the-outsiders/gallery/1784646537584-xijh5r.png",
     "assets/media/the-outsiders/gallery/1784647217086-iyhorg.png",
+    "assets/media/the-outsiders/gallery/1784647217144-v58vam.png",
     "assets/media/the-outsiders/gallery/1784647217201-mjt_ux.png",
+    "assets/media/the-outsiders/gallery/1784647217256-elxjib.png",
     "assets/media/the-outsiders/gallery/1784647217312-xijh5r.png",
     "assets/media/the-outsiders/gallery/1784647217366-mmyd5c.png",
-    "assets/media/the-outsiders/gallery/1784647217256-elxjib.png",
     "favicon.png"
   ],
   "generatedPages": {
